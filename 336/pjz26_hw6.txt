@@ -1,0 +1,77 @@
+Peter Zwyhun HW6
+
+1.
+CREATE ASSERTATION assertation(
+CHECK (NOT EXISTS
+			SELECT * From student s, undergrad u, grad g WHERE 
+			NOT(s.sid=g.sid) AND NOT(g.sid=s.sid))
+)
+
+2. CHECK (student.sid = )
+
+
+3. error :-
+		student(sid,_,_,_,_), NOT grad(sid,_,_,_), NOT undergread(sid,_,_).
+		
+4.       Insert | Delete  | Update of column
+---------+------+---------+----------------
+student  |  x   |     x   |
+---------+------+---------+----------------
+undergra |  x   |     x   |
+---------+------+---------+----------------
+grad     |  x   |     x   |
+---------+------+---------+----------------
+
+5.       Insert | Delete  | Update of column
+---------+------+---------+----------------
+student  |  x   |         |
+---------+------+---------+----------------
+undergra |      |     x   |
+---------+------+---------+----------------
+grad     |      |     x   |
+---------+------+---------+----------------
+
+6.
+CREATE TRIGGER trigger
+AFTER INSERT
+ON student
+FOR EACH ROW                  
+IF (student.sid NOT IN (grad) or NOT IN (undergrad))
+    INSERT NEW INTO studentError
+ELSE
+     INSERT NEW INTO student
+     
+Part 2.
+
+R[ABEFJK] with FDs={BE->JK, J->FA, F->B}
+
+1. BE is a key
+
+BE -> JK
+BE -> JKFA
+BE -> BEJKFA
+
+2. 
+
+BE -> JK
+BE -> JKFA
+BE -> BEJKFA
+
+J -> J
+J -> JFA
+J -> JFBA
+
+F -> F
+F -> FB
+
+3. This is not BCNF because F is not a superkey.
+It is also not 3NF because FA is not in any key.
+
+4. R1[FB] R2[AEJK]
+
+5. The above composition is not lossless becuase R1 U R2 is empty. It is not dependancy preserving and not BCNF or 3NF.
+
+6. 
+No more steps necesarry.
+
+

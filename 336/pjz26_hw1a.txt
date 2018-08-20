@@ -1,0 +1,113 @@
+Peter Zwyhun (pjz26) HW1a
+
+1. halfSibling(X,Y) :-
+		childOf(X,Z),
+		childOf(Y,Z),
+		NOT X=Y.
+
+2. parents(X,Y,Z) :-
+		childOf(X,Z),
+		childOf(X,Y),
+		wifeOf(Y,Z),
+		male(Z),
+		female(Y).
+		
+   siblingOf(X,Y) :-
+		parents(X,Cp1,Cp2),
+		parents(Y,Cp1,Cp2),
+		NOT X=Y.
+		
+3. grandFatherOf(GF,GC) :-
+		male(GF),
+		childOf(GC,Cp),
+		childOf(Cp,GF).
+		
+4. person(P) :-
+		male(P).
+	person(P) :-	
+		female(P).
+	person(P)  :-
+		wifeOf(P,_).
+	person(P) :-
+		 wifeOf(_,P).
+	person(P) :-
+		childOf(P,_).
+	person(P) :-
+		childOf(_,P).
+		
+5. secondCousin(A,B) :-
+		 childOf(A,Cp1), 
+		 childOf(B,Cp2), 
+		 childOf(Cp1,Gp1), 
+		 childOf(Cp2,Gp2), 
+		 childOf(Gp1,GG), 
+		 childOf(Gp2,GG), 
+		 NOT A=B, 
+		 NOT Cp2=Cp1, 
+		 NOT Gp1=Gp2.
+		 
+6. spouse(A,B) :-
+		wifeOf(A,B).
+   spouse(A,B) :- 
+		wifeOf(B,A).
+   
+   brotherInLawOf(A,B) :-
+		male(A), 
+		spouse(B,C), 
+		sibling(C,A).
+		
+7. haveMaleChild(A,B) :- 
+		spouse(A,B), 
+		childOf(X,A), 
+		childOf(X,B), 
+		male(X).
+		
+   allGirlCouple(A,B) :- 
+		spouse(A,B), 
+		NOT haveMaleChild(A,B).	
+
+8. error :- 
+		male(X), 
+		female(X).
+	#Someone can only be male or female
+	
+  error :- 
+		wifeOf(A,B), 
+		A=B.
+	#Someone cannot be their own wife
+	
+  error :-
+		childOf(A,B),
+		A=B.
+	#Someone cannot be their own child
+
+  error :-
+		wifeOf(A,B),
+		male(A).
+	#Cannot be a male wife
+
+  error :-
+		wifeOf(A,B),
+		female(B).
+	#Cannot be a female husband	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

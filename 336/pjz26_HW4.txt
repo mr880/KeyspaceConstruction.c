@@ -1,0 +1,115 @@
+\Peter Zwyhun HW4
+
+1.
+
+select S.pub from serves S, likes L
+where L.drinker="Joe" and L.beer=S.beer
+
+Caravan
+The Blank Club
+Caravan
+Club 175
+A.P. Stump's
+Caravan
+
+2.
+
+select F.drinker from frequents F, serves S
+where F.pub = S.pub and S.cost <= 3
+
+Bob
+Mike
+Vince
+Mike
+
+3.
+
+select distinct L.drinker from likes L, serves S
+where S.beer = L.beer
+and S.cost>8 and L.beer in (
+select t.beer from likes t where t.drinker = "joe")
+
+Bob
+Joe
+Mike
+
+4. 
+
+select distinct L.drinker from likes L
+where L.drinker not in(select f.drinker from frequents f)
+
+Joe
+
+5.
+
+select distinct F.drinker from frequents F, serves S
+where F.pub = S.pub and (S.beer = "Stella Artois" or S.beer = "Molsons")
+
+Bob
+Mike
+Vince
+
+Part B
+a1.
+
+select distinct pid from appearsIn
+
+2
+3
+4
+6
+7
+9
+
+a2.
+
+select distinct pid from appearsIn 
+union
+select distinct director from Movie
+
+2
+3
+4
+6
+7
+9
+1
+5
+8
+10
+11
+12
+
+B.
+
+select P.name,P.age from Person P, appearsIn A,  Movie M
+where M.yearReleased = 2005 and M.mid = A.mid and A.pid = P.pid and P.name 
+IN
+(select P.name from Person P, appearsIn A,  Movie M
+where M.yearReleased = 1995 and M.mid = A.mid and A.pid = P.pid)
+
+Ving Rhames
+
+C.
+
+select P.name from Person P, Movie M, appearsIn A
+where P.liftimeIncome > 
+
+(select SUM(M.budget) from Movie M, appearsIn A, Person P
+	where P.pid = A.pid and M.mid = A.mid)
+    
+D.
+
+select P.name from Person P, Movie M
+where M.director = P.pid and M.budget >= 
+(select MAX(M.budget) from Movie M)
+
+J.J. Abrams
+
+E.
+
+select distinct M.director from Movie M where
+(select COUNT(M2.director) from Movie M2 where M2.director = M.director) >= 3 
+
+1
+5

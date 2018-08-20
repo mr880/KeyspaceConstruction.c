@@ -1,0 +1,79 @@
+Peter Zwyhun HW5
+
+table Person {
+    personID
+    name
+    address
+}
+
+table Doctor{
+    personID
+    specialty
+}
+
+table PrescrDoctor{
+    personID
+    license#
+}
+
+table Patient{
+    personID
+    ins#
+}
+
+table Prescription{
+    dosage
+    date
+}
+
+table Drug{
+    name
+    composition
+}
+
+table Pharma{
+    name
+    address
+}
+
+table Bottle{
+    bid
+}
+
+table visits{
+    personID (from Doctor)
+    personID (from Patient)
+    date
+}
+
+table writes{
+    license# (from PrescrDoctor)
+    dosage (from Prescription)
+    date (from Prescription)
+}
+
+table to{
+    ins# (from Patient)
+    dosage (from Prescription)
+    date (from Prescription)
+}
+
+table for{
+    dosage (from Prescription)
+    date (from Prescription)
+    name (from Drug)
+
+}
+
+table containsPillsOf{
+    name (from Drug)
+    bid (from bottle)
+
+}
+
+table fills{
+    dosage (from Prescription)
+    bid (from bottle)
+    name (from Pharma)
+    date
+}

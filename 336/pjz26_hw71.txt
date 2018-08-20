@@ -1,0 +1,17 @@
+Peter Zwyhun HW 7a
+
+a.
+
+//first
+
+b.
+
+//book[@year>1995][price<100]/title
+
+c.
+
+//book[not(author)]/title
+
+d.
+
+sum(//book/author/first[contains(text(), 'Peter')]/price)

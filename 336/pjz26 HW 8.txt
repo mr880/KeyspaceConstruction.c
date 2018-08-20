@@ -1,0 +1,73 @@
+Peter Zwyhun Homework 8
+
+A.
+
+(A, 20)
+(B, 30)
+(C, 40)
+
+(A, 60)
+(B, 30)
+(C, 40)
+
+a. 
+(43.3, 43.3) (25,25)
+
+b.
+(25,43.3) (43.3,43.3)
+
+c.
+(45, 43.3) (43.3, 43.3) (25,25)
+
+d.
+(25,25) (43.3,43.3) (30, 30) (45,43.3) 
+
+B.
+1.
+Schedule A:
+Serial
+
+Schedule B:
+Serializable
+T1-T2-T3
+T3-T1-T2
+
+2.i.
+>>Schedule A <<
+ T1     T2
+r(m) S
+r(n) S
+        r(n) S
+        w(m) X
+
+
+>>Schedule B <<
+ T1	    T2	     T3
+r(m) S
+        r(y) S
+                w(z) X
+        w(m) X
+w(n) X
+
+2.ii
+ T1     T2
+r(m) S
+r(n) S
+        r(n) S
+        w(m) X
+commit  commit
+
+
+ T1	    T2	     T3
+r(m) S
+        r(y) S
+                w(z) X
+        w(m) X<-DEADLOCK
+w(n) X
+commit  attempt commit
+
+3.
+2.i.a is Strict 2PL
+
+
+        
